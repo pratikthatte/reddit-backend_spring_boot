@@ -3,7 +3,6 @@ package com.project.redditclone.dto;
 public class PostDto {
 	Long id;
 	String name;
-	String Url;
 	String description;
 	String subredditName;
 	/**
@@ -29,18 +28,6 @@ public class PostDto {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return Url;
-	}
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl(String url) {
-		Url = url;
 	}
 	/**
 	 * @return the description

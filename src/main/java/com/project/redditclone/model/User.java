@@ -15,6 +15,13 @@ public class User{
     private String userEmail;
     private Instant creationTime;
     private boolean enabled;
+    
+	/**
+	 * @return the userId
+	 */
+	public Long getUserId() {
+		return userId;
+	}
 	/**
 	 * @return the enabled
 	 */

@@ -49,7 +49,6 @@ public class PostService {
 		post.setPostName(postDto.getName());
 		post.setUser(authService.getCurrentUser());
 		post.setSubreddit(subredditRepository.findBySubredditName(postDto.getSubredditName()).orElseThrow(()->new RedditErrorException("Subreddit with name "+postDto.getSubredditName()+" not found.")));
-		post.setPostUrl(postDto.getUrl());
 		return post;
 	}
 	
@@ -59,7 +58,6 @@ public class PostService {
 		postDto.setId(post.getPostId());
 		postDto.setName(post.getPostName());
 		postDto.setSubredditName(post.getSubreddit().getSubredditName());
-		postDto.setUrl(post.getPostUrl());
 		return postDto;
 	}
 

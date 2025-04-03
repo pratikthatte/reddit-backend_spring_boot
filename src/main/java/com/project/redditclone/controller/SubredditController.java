@@ -1,7 +1,11 @@
 package com.project.redditclone.controller;
 
+import static org.springframework.http.ResponseEntity.status;
+
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,16 +26,16 @@ public class SubredditController {
 		this.subredditService = subredditService;
 	}
 	@GetMapping
-	public List<SubredditDto> getAllSubreddits(){
-		return subredditService.getAll();
+	public ResponseEntity<List<SubredditDto>> getAllSubreddits(){
+		return status(HttpStatus.OK).body(subredditService.getAll());
 	}
 	@GetMapping("/{id}")
-	public SubredditDto getSubredditById(@PathVariable Long id) {
-		return subredditService.getSubredditById(id);
+	public ResponseEntity<SubredditDto> getSubredditById(@PathVariable Long id) {
+		return status(HttpStatus.OK).body(subredditService.getSubredditById(id));
 	}
 	@PostMapping
-	public SubredditDto createSubreddit(@RequestBody SubredditDto subredditDto) {
-		return subredditService.createSubreddit(subredditDto);
+	public ResponseEntity<SubredditDto> createSubreddit(@RequestBody SubredditDto subredditDto) {
+		return status(HttpStatus.CREATED).body(subredditService.createSubreddit(subredditDto));
 
 	}
 	

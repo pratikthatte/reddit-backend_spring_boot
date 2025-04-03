@@ -1,5 +1,7 @@
 package com.project.redditclone.controller;
 
+import static org.springframework.http.ResponseEntity.status;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,22 +18,21 @@ import com.project.redditclone.dto.RegisterRequest;
 @RequestMapping("/api/auth")
 public class AuthController {
 	private AuthService authService;
-	//Constructor-based injection for AuthService dependency
 	public AuthController(AuthService authService) {
 		this.authService = authService;
 	}
 	@PostMapping("/signup")
 	public ResponseEntity<String> singup(@RequestBody RegisterRequest registerRequest) {
 		authService.signup(registerRequest);
-		return new ResponseEntity<String>("User signup successful.",HttpStatus.OK);
+		return status(HttpStatus.OK).body("User signup successful.");
 	}
 	@GetMapping("/accountVerification/{token}")
 	public ResponseEntity<String> verifyAccount(@PathVariable String token){
 		authService.verifyToken(token);
-		return new ResponseEntity<String>("Account activated successfully.",HttpStatus.OK);
+		return status(HttpStatus.OK).body("Account activated successfully.");
 	}
 	@PostMapping("/login")
-	public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
-		return authService.login(loginRequest);
+	public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest loginRequest) {
+		return status(HttpStatus.OK).body(authService.login(loginRequest));
 	}
 }

@@ -8,17 +8,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 @Entity
 public class Vote {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long voteId;
-	private VoteType voteType;
+	protected long voteId;
+	protected VoteType voteType;
 	@ManyToOne
 	@JoinColumn(name="userId", referencedColumnName="userId")
-	private User user;
-	@ManyToOne
-	@JoinColumn(name="postId",referencedColumnName="postId")
-	private Post post;
+	protected User user;
 	/**
 	 * @return the voteType
 	 */
@@ -42,17 +38,5 @@ public class Vote {
 	 */
 	public void setUser(User user) {
 		this.user = user;
-	}
-	/**
-	 * @return the post
-	 */
-	public Post getPost() {
-		return post;
-	}
-	/**
-	 * @param post the post to set
-	 */
-	public void setPost(Post post) {
-		this.post = post;
 	}
 }
